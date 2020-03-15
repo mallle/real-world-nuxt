@@ -10,6 +10,21 @@ import NavBar from '~/components/NavBar.vue'
 export default {
   components: {
     NavBar
+  },
+  head() {
+    return {
+      // Titletemplate - this is used on every site. The %s
+      // takes in the information from anther site and adds it
+      titleTemplate: '%s - Real World Events',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Where you can find all the events taking place in your neighborhood' // Description for the page
+        }
+      ]
+    }
   }
 }
 </script>
