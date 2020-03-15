@@ -1,4 +1,5 @@
 const pkg = require('./package')
+import EventService from './services/EventService.js'
 
 module.exports = {
   mode: 'universal',
@@ -62,6 +63,22 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    }
+  },
+  //Specify static sites one by one for the npm run generate command
+  // generate: {
+  //   routes: [
+  //     '/event/5928101'
+  //   ]
+  // }
+  //Specify static sites automaticly for the npm run generate command
+  generate: {
+    routes: () => {
+      return EventService.getEvents().then(response => {
+        return response.data.map(event => {
+          return '/event/' + event.id
+        })
+      })
     }
   }
 }
